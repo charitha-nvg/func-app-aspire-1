@@ -18,7 +18,18 @@ namespace FunctionApp101
         public IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
-            return new OkObjectResult("Welcome to Azure Functions!");
+
+            // Read query parameters
+            // Read query parameters with null checks
+            string name = req.Query["name"].ToString() ?? "Guest";
+            string msg = req.Query["msg"].ToString() ?? "Good Day !";
+
+
+            // Create the response message
+            string responseMessage = $"Hello, {name}. Your message is: {msg}";
+            _logger.LogInformation(responseMessage);
+
+            return new OkObjectResult(responseMessage);
         }
     }
 }
