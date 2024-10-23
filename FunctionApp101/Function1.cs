@@ -20,9 +20,8 @@ namespace FunctionApp101
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 
             // Read query parameters
-            // Read query parameters with null checks
-            string name = req.Query["name"].ToString() ?? "Guest";
-            string msg = req.Query["msg"].ToString() ?? "Good Day !";
+            string name = req.Query["name"].ToString();
+            string msg = req.Query["msg"].ToString();
 
 
             // Create the response message
